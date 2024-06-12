@@ -1,0 +1,12 @@
+.group {
+  background-color: #D9F7E9;
+  text-align: center;
+  padding: 32px;
+}
+
+.group h3 {
+  font-size: 32px;
+  display: inline-block;
+  padding-bottom: 8px;
+  border-bottom: 4px solid;
+}

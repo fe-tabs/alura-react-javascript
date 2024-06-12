@@ -5,29 +5,10 @@ import TextField from "../TextField";
 import DropdownList from '../DropdownList';
 import SubmitButton from '../SubmitButton';
 
-const Form = () => {
-  const options = [
-    {
-      id: 1,
-      name: "Front-End",
-      value: "front-end"
-    },
-    {
-      id: 2,
-      name: "Back-End",
-      value: "back-end"
-    },
-    {
-      id: 3,
-      name: "Banco de Dados",
-      value: "database"
-    },
-    {
-      id: 4,
-      name: "DevOps",
-      value: "devops"
-    },
-  ];
+const Form = ({ 
+  onNewMember,
+  options 
+}) => {
   
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
@@ -36,7 +17,13 @@ const Form = () => {
 
   const handleFormSubmitted = (e) => {
     e.preventDefault();
-    console.log("Formulário enviado!", group);
+    onNewMember({
+      id: name,
+      name,
+      role,
+      image,
+      group
+    })
   }
 
   return (

@@ -8,7 +8,6 @@ const DropdownList = ({
   options
 }) => {
   const onSelectChange = e => {
-    console.log(value);
     onValueChange(e.target.value);
   }
 
