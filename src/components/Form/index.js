@@ -13,7 +13,7 @@ const Form = ({
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
   const [image, setImage] = useState('');
-  const [group, setGroup] = useState('front-end');
+  const [group, setGroup] = useState('');
 
   const handleFormSubmitted = (e) => {
     e.preventDefault();
@@ -23,7 +23,11 @@ const Form = ({
       role,
       image,
       group
-    })
+    });
+    setName('');
+    setRole('');
+    setImage('');
+    setGroup('');
   }
 
   return (

@@ -19,6 +19,7 @@ const DropdownList = ({
         value={value}
         onChange={onSelectChange}
       >
+        <option value=""></option>
         {options.map(option => {
           return (
             <option 

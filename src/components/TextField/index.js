@@ -8,7 +8,6 @@ const TextField = ({
   placeholder
 }) => {
   const onInputChange = e => {
-    console.log(value);
     onValueChange(e.target.value);
   }
 

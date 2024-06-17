@@ -53,6 +53,7 @@ function App() {
             name={group.name} 
             primaryColor={group.primaryColor}
             secondaryColor={group.secondaryColor}
+            groupMembers={members.filter(member => member.group === group.value)}
           />
         );
       })}
