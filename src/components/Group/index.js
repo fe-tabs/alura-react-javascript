@@ -5,7 +5,8 @@ const Group = ({
   name,
   primaryColor,
   secondaryColor,
-  groupMembers
+  groupMembers,
+  onRemoveMember
 }) => {
   return (
     groupMembers.length > 0 && <section 
@@ -17,11 +18,13 @@ const Group = ({
         {groupMembers.map(member => {
           return (
             <Member
+              id={member.id}
               key={member.id}
               name={member.name}
               role={member.role}
               image={member.image}
               backgroundColor={primaryColor}
+              onRemoveMember={onRemoveMember}
             />
           );
         })}

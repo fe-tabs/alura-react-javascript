@@ -1,5 +1,6 @@
 .member {
   width: 280px;
+  position: relative;
 }
 
 .member .header {
@@ -35,4 +36,11 @@
   font-size: 18px;
   line-height: 22px;
   padding: 0 16px;
+}
+
+.member .delete {
+  cursor: pointer;
+  position: absolute;
+  top: -12px;
+  right: -12px;
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import './Form.css';
 import TextField from "../TextField";
@@ -6,7 +7,7 @@ import DropdownList from '../DropdownList';
 import SubmitButton from '../SubmitButton';
 
 const Form = ({ 
-  onNewMember,
+  onAddMember,
   options 
 }) => {
   
@@ -17,8 +18,8 @@ const Form = ({
 
   const handleFormSubmitted = (e) => {
     e.preventDefault();
-    onNewMember({
-      id: name,
+    onAddMember({
+      id: uuidv4(),
       name,
       role,
       image,
