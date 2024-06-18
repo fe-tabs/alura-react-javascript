@@ -44,3 +44,8 @@
   top: -12px;
   right: -12px;
 }
+
+.member .star {
+  cursor: pointer;
+  margin-top: 24px;
+}

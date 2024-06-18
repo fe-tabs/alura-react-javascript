@@ -1,4 +1,5 @@
 import { AiFillCloseCircle } from 'react-icons/ai';
+import { FaRegStar, FaStar } from 'react-icons/fa';
 
 import './Member.css';
 
@@ -7,8 +8,10 @@ const Member = ({
   name,
   role,
   image,
+  starred,
   backgroundColor,
-  onRemoveMember
+  onRemoveMember,
+  onStarMember
 }) => {
   return (
     <div className="member">
@@ -23,6 +26,9 @@ const Member = ({
       <div className="footer">
         <h4>{name}</h4>
         <h5>{role}</h5>
+        <div className='star' onClick={() => onStarMember(id)}>
+          {starred ? <FaStar size={24} color='#ffd500'/> : <FaRegStar size={24}/>}
+        </div>
       </div>
     </div>
   );

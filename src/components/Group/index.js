@@ -8,6 +8,7 @@ const Group = ({
   color,
   groupMembers,
   onRemoveMember,
+  onStarMember,
   changeGroupColor
 }) => {
   return (
@@ -35,8 +36,10 @@ const Group = ({
               name={member.name}
               role={member.role}
               image={member.image}
+              starred={member.starred}
               backgroundColor={color}
               onRemoveMember={onRemoveMember}
+              onStarMember={onStarMember}
             />
           );
         })}

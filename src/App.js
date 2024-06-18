@@ -11,25 +11,29 @@ function App() {
       "id": uuidv4(),
       "name": "Front-End",
       "value": "front-end",
-      "color": "#57C278"
+      "color": "#57C278",
+      "starred": false
     },
     {
       "id": uuidv4(),
       "name": "Back-End",
       "value": "back-end",
-      "color": "#82CFFA"
+      "color": "#82CFFA",
+      "starred": false
     },
     {
       "id": uuidv4(),
       "name": "Banco de Dados",
       "value": "database",
-      "color": "#E06B69"
+      "color": "#E06B69",
+      "starred": false
     },
     {
       "id": uuidv4(),
       "name": "DevOps",
       "value": "devops",
-      "color": "#FFBA05"
+      "color": "#FFBA05",
+      "starred": false
     },
   ];
 
@@ -42,6 +46,16 @@ function App() {
 
   const onRemoveMember = (id) => {
     setMembers(members.filter(member => member.id !== id));
+  }
+
+  const onStarMember = (id) => {
+    setMembers(members.filter(member => {
+      if (member.id === id) {
+        member.starred = !member.starred;
+      }
+
+      return member;
+    }));
   }
 
   const onAddGroup = (group) => {
@@ -76,6 +90,7 @@ function App() {
             color={group.color}
             groupMembers={members.filter(member => member.group === group.value)}
             onRemoveMember={onRemoveMember}
+            onStarMember={onStarMember}
             changeGroupColor={changeGroupColor}
           />
         );
