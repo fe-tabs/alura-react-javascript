@@ -6,37 +6,34 @@ import Form from './components/Form';
 import Group from './components/Group';
 
 function App() {
-  const groups = [
+  const defaultGroups = [
     {
       "id": uuidv4(),
       "name": "Front-End",
       "value": "front-end",
-      "primaryColor": "#57C278",
-      "secondaryColor": "#D9F7E9"
+      "color": "#57C278"
     },
     {
       "id": uuidv4(),
       "name": "Back-End",
       "value": "back-end",
-      "primaryColor": "#82CFFA",
-      "secondaryColor": "#E8F8FF"
+      "color": "#82CFFA"
     },
     {
       "id": uuidv4(),
       "name": "Banco de Dados",
       "value": "database",
-      "primaryColor": "#E06B69",
-      "secondaryColor": "#FDE7E8"
+      "color": "#E06B69"
     },
     {
       "id": uuidv4(),
       "name": "DevOps",
       "value": "devops",
-      "primaryColor": "#FFBA05",
-      "secondaryColor": "#FFF5D9"
+      "color": "#FFBA05"
     },
   ];
 
+  const [groups, setGroups] = useState(defaultGroups);
   const [members, setMembers] = useState([]);
   
   const onAddMember = (member) => {
@@ -45,6 +42,16 @@ function App() {
 
   const onRemoveMember = (id) => {
     setMembers(members.filter(member => member.id !== id));
+  }
+
+  const changeGroupColor = (id, color) => {
+    setGroups(groups.map(group => {
+      if (group.id === id) {
+        group.color = color;
+      }
+
+      return group;
+    }));
   }
 
   return (
@@ -56,11 +63,12 @@ function App() {
         return (
           <Group 
             key={group.id}
+            id={group.id}
             name={group.name} 
-            primaryColor={group.primaryColor}
-            secondaryColor={group.secondaryColor}
+            color={group.color}
             groupMembers={members.filter(member => member.group === group.value)}
             onRemoveMember={onRemoveMember}
+            changeGroupColor={changeGroupColor}
           />
         );
       })}

@@ -1,19 +1,31 @@
+import hexToRgba from 'hex-to-rgba';
 import Member from '../Member';
 import './Group.css';
 
 const Group = ({
+  id,
   name,
-  primaryColor,
-  secondaryColor,
+  color,
   groupMembers,
-  onRemoveMember
+  onRemoveMember,
+  changeGroupColor
 }) => {
   return (
     groupMembers.length > 0 && <section 
       className='group'
-      style={{ backgroundColor: secondaryColor }}
+      style={{ backgroundColor: hexToRgba(color, .25) }}
     >
-      <h3 style={{ borderBottomColor: primaryColor }}>{name}</h3>
+      <input
+        type='color'
+        className='primary-color'
+        style={{
+          backgroundColor: `${color}`,
+          border: `${color} solid 8px`
+        }}
+        value={color}
+        onChange={(e) => changeGroupColor(id, e.target.value)}
+      />
+      <h3 style={{ borderBottomColor: color }}>{name}</h3>
       <div className='members'>
         {groupMembers.map(member => {
           return (
@@ -23,7 +35,7 @@ const Group = ({
               name={member.name}
               role={member.role}
               image={member.image}
-              backgroundColor={primaryColor}
+              backgroundColor={color}
               onRemoveMember={onRemoveMember}
             />
           );
