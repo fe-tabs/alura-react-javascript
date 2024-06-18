@@ -2,75 +2,119 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import './Form.css';
-import TextField from "../TextField";
+import Field from "../Field";
 import DropdownList from '../DropdownList';
 import SubmitButton from '../SubmitButton';
 
 const Form = ({ 
   onAddMember,
+  onAddGroup,
   options 
 }) => {
   
-  const [name, setName] = useState('');
-  const [role, setRole] = useState('');
-  const [image, setImage] = useState('');
-  const [group, setGroup] = useState('');
+  const [memberName, setMemberName] = useState('');
+  const [memberRole, setMemberRole] = useState('');
+  const [memberImage, setMemberImage] = useState('');
+  const [memberGroup, setMemberGroup] = useState('');
 
-  const handleFormSubmitted = (e) => {
+  const [groupName, setGroupName] = useState('');
+  const [groupColor, setGroupColor] = useState('');
+
+  const handleMemberFormSubmitted = (e) => {
     e.preventDefault();
     onAddMember({
       id: uuidv4(),
-      name,
-      role,
-      image,
-      group
+      name: memberName,
+      role: memberRole,
+      image: memberImage,
+      group: memberGroup
     });
-    setName('');
-    setRole('');
-    setImage('');
-    setGroup('');
+    setMemberName('');
+    setMemberRole('');
+    setMemberImage('');
+    setMemberGroup('');
+  }
+
+  const handleGroupFormSubmitted = (e) => {
+    e.preventDefault();
+    onAddGroup({
+      id: uuidv4(),
+      name: groupName,
+      value: groupName.toLowerCase(),
+      color: groupColor
+    });
+    setGroupName('');
+    setGroupColor('');
   }
 
   return (
     <section className="form">
-      <form onSubmit={handleFormSubmitted}>
+      <form onSubmit={handleMemberFormSubmitted}>
         <h2>
           Preencha os dados para criar o Card de membro
         </h2>
-        <TextField 
+
+        <Field 
           label="Nome"
-          value={name}
-          onValueChange={value => setName(value)}
+          value={memberName}
+          onValueChange={value => setMemberName(value)}
           required={true}
           placeholder="Digite seu nome"
         />
 
-        <TextField 
+        <Field 
           label="Função"
-          value={role}
-          onValueChange={value => setRole(value)}
+          value={memberRole}
+          onValueChange={value => setMemberRole(value)}
           required={true}
           placeholder="Digite sua função"
         />
 
-        <TextField 
+        <Field 
           label="Imagem"
-          value={image}
-          onValueChange={value => setImage(value)}
+          value={memberImage}
+          onValueChange={value => setMemberImage(value)}
           required={true}
           placeholder="Digite o endereço da imagem"
         />
 
         <DropdownList 
           label="Time"
-          value={group}
-          onValueChange={value => setGroup(value)}
+          value={memberGroup}
+          onValueChange={value => setMemberGroup(value)}
           required={true}
           options={options}
         />
 
         <SubmitButton>
           Criar Card
+        </SubmitButton>          
+      </form>
+
+      <form onSubmit={handleGroupFormSubmitted}>
+        <h2>
+          Preencha os dados para criar o Time
+        </h2>
+
+        <Field 
+          label="Nome"
+          value={groupName}
+          onValueChange={value => setGroupName(value)}
+          required={true}
+          placeholder="Digite o nome do Time"
+        />
+
+        <Field
+          type="color"
+          label="Cor"
+          value={groupColor}
+          onValueChange={value => setGroupColor(value)}
+          placeholder='Defina a cor do time'
+          required={true}
+        />
+
+        <SubmitButton>
+          Criar Time
         </SubmitButton>          
       </form>
     </section>

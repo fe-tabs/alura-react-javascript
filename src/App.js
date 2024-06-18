@@ -44,6 +44,10 @@ function App() {
     setMembers(members.filter(member => member.id !== id));
   }
 
+  const onAddGroup = (group) => {
+    setGroups([...groups, group]);
+  }
+
   const changeGroupColor = (id, color) => {
     setGroups(groups.map(group => {
       if (group.id === id) {
@@ -57,7 +61,11 @@ function App() {
   return (
     <div className="App">
       <Banner />
-      <Form onAddMember={onAddMember} options={groups} />
+      <Form 
+        onAddMember={onAddMember}
+        onAddGroup={onAddGroup} 
+        options={groups} 
+      />
       
       {groups.map(group => {
         return (

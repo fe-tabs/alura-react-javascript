@@ -1,6 +1,7 @@
-import './TextField.css';
+import './Field.css';
 
-const TextField = ({
+const Field = ({
+  type = 'text',
   label,
   value,
   onValueChange,
@@ -12,9 +13,10 @@ const TextField = ({
   }
 
   return (
-    <div className="text-field">
+    <div className="field">
       <label>{label}</label>
       <input
+        type={type}
         value={value}
         onChange={onInputChange}
         required={required}
@@ -24,4 +26,4 @@ const TextField = ({
   );
 }
 
-export default TextField;
+export default Field;
